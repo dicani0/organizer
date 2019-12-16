@@ -10,8 +10,9 @@ class ExaminationsController extends Controller
 {
     public function index()
     {
+        $subuser_id=session('subuser_id');
         $examinations = Examination::all();
-        return view('examinations.index')->with('examinations', $examinations);
+        return view('examinations.index', compact('examinations', 'subuser_id'));
     }
     public function create()
     {
@@ -35,7 +36,7 @@ class ExaminationsController extends Controller
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         $extension = $request->file('photo')->getClientOriginalExtension();
         $filenameToStore = $filename.'_'.time().'.'.$extension;
-        $path = $request->file('photo')->storeAs('public/examinations/'.$request->input('subuser_id'), $filenameToStore);
+        $path = $request->file('photo')->storeAs('public/examinations/'.$request->session()->get('subuser_id'), $filenameToStore);
 
         $examination = new Examination();
         $examination->name = $request->input('name');

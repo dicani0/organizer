@@ -30,5 +30,7 @@ class FormServiceProvider extends ServiceProvider
         Form::component('hidden', 'components.form.hidden', ['name', 'value' => null, 'attributes' => []]);
         Form::component('dropdown', 'components.form.dropdown', ['name', 'value', 'attributes' => []]);
         Form::component('file', 'components.form.file', ['name', 'attributes' =>[]]);
+        Form::component('bsColor', 'component.form.color', ['name', 'attributes' =>[]]);
+        Form::component('bsDate', 'component.form.date', ['name', 'attributes' =>[]]);
     }
 }

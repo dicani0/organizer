@@ -27,10 +27,9 @@ Route::resource('referals', 'ReferalsController');
 Route::resource('prescriptions', 'PrescriptionsController');
 Route::resource('recommendations', 'RecommendationsController');
 //calendar
-Route::get('fullcalendar', 'FullCalendarController@index');
-Route::post('fullcalendar/create', 'FullCalendarController@create');
-Route::post('fullcalendar/update', 'FullCalendarController@update');
-Route::post('fullcalendar/delete', 'FullCalendarController@destroy');
+Route::resource('/calendar', 'EventsController');
+Route::get('/addeventurl', 'EventsController@display');
+
 
 Route::get('events', 'EventController@index')->name('events.index');
 Route::post('events', 'EventController@addEvent')->name('events.add');

@@ -14,7 +14,7 @@
       @endif
       <div class="col-3">
       <div class="card mb-3 tmp-card" style="">
-        <img class="card-img-top" height="250" width="250" src="storage/examinations/1/{{$examination->photo}}" alt="{{$examination->name}}">
+        <img class="card-img-top" height="250" width="250" src="storage/examinations/{{$subuser_id}}/{{$examination->photo}}" alt="{{$examination->name}}">
       <div class="card-body">
       <h5 class="card-title">{{$examination->name}}</h5>
       <hr>

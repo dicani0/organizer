@@ -86,7 +86,9 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $doctor = Doctor::find($id);
+        $specializations = Specialization::pluck('name', 'id');
+        return view('doctors.edit', compact('doctor', 'specializations'));
     }
 
     /**
