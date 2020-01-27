@@ -15,14 +15,15 @@ class EventsController extends Controller
      */
     public function index()
     {
+        CheckSubuserController::check();
         $events = Event::all();
         $event =[];
 
         foreach ($events as $row) {
-            $enddate = $row->end_date."24:00:00";
+            //$enddate = $row->end_date."24:00:00";
             $event[] = \Calendar::event(
                 $row->title,
-                true,
+                false,
                 new \DateTime($row->start_date),
                 new \DateTime($row->end_date),
                 $row->id,
@@ -65,8 +66,9 @@ class EventsController extends Controller
           'end_date' => 'required'
         ]);
 
-        $events = new Event;
+        $event = new Event;
         $event->title = $request->input('title');
+        $event->subuser_id = session('subuser_id');
         $event->color = $request->input('color');
         $event->start_date = $request->input('start_date');
         $event->end_date = $request->input('end_date');

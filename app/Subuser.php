@@ -10,4 +10,8 @@ class Subuser extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->subname;
+    }
 }

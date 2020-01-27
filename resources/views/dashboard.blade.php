@@ -7,6 +7,10 @@
                 <div class="card-header"><h3 style="display:inline">Podopieczni</h3><span class="float-right"><a href="/subusers/create" class="btn btn-outline-primary">Dodaj podopiecznego</a></span></div>
 
                 <div class="card-body">
+
+                  <div id="alert-box">
+
+                  </div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -34,7 +38,7 @@
                               <div class="btn btn-group">
 
 
-                            <a data-id='{{$subuser->id}}' class='btn btn-primary btn-sm float-right chooseSubuser' href="#">Wybierz</a>
+                            <a data-id='{{$subuser->id}}' class='btn btn-primary btn-sm float-right chooseSubuser' href="#"><i class="fas fa-user-check"></i></a>
                             <a class='btn btn-warning btn-sm float-right' href="/subusers/{{$subuser->id}}/edit">Edytuj</a>
 
                               {!!Form::open(['action' => ['SubusersController@destroy', $subuser->id], 'method' => 'POST', 'class' => 'float-left', 'onsubmit' => 'return confirm("Na pewno?")'])!!}
@@ -55,8 +59,18 @@
     <script type="text/javascript">
       $('.chooseSubuser').on('click', function(e){
         e.preventDefault();
-        console.log($(this).data('id'));
-        $.get('/subuser/'+$(this).data('id'))
+        // $.get('/subuser/'+$(this).data('id'));
+        $.ajax({
+          method: 'GET',
+          url: '/subuser/'+$(this).data('id'),
+          success: function(response){
+            $('#alert-box').html(
+              '<div class="alert alert-success" role="alert">' +
+                "Wybrano podopiecznego: "+ response +
+              '</div>'
+            );
+          }
+        })
       })
     </script>
 @endsection

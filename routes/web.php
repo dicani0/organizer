@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -29,8 +29,7 @@ Route::resource('recommendations', 'RecommendationsController');
 //calendar
 Route::resource('/calendar', 'EventsController');
 Route::get('/addeventurl', 'EventsController@display');
+Route::post('events', 'EventsController@addEvent')->name('events.add');
 
 
-Route::get('events', 'EventController@index')->name('events.index');
-Route::post('events', 'EventController@addEvent')->name('events.add');
 Route::get('subuser/{id}', 'SubusersController@storeToSession')->name('subuser.storeToSession');

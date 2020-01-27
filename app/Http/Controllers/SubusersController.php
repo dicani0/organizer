@@ -23,6 +23,9 @@ class SubusersController extends Controller
     public function storeToSession($id)
     {
         session(['subuser_id' => $id]);
+        $subuser=Subuser::find($id);
+        session(['subuser_fullname' => $subuser->name . ' ' . $subuser->subname]);
+        return $subuser->name . ' ' . $subuser->subname;
     }
     /**
      * Show the form for creating a new resource.
@@ -76,7 +79,16 @@ class SubusersController extends Controller
      */
     public function show($id)
     {
-        //
+        return [
+          [
+            'userid' => 1,
+            'content' => 'dupa'
+          ],
+          [
+            'userid' => 1,
+            'content' => 'dupa2'
+          ]
+        ];
     }
 
     /**

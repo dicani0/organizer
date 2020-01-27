@@ -3,18 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/lang/pl.js"></script>
+    <link href="{{ asset('css/popup.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
-
     @yield('style')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('fa/css/all.css')}}" rel="stylesheet">
+    <script src={{ asset('js/popup.js')}}></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
@@ -48,7 +50,7 @@
                   <a class="nav-link" href="/recommendations">Zalecenia</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="/fullcalendar">Terminarz</a>
+                  <a class="nav-link active" href="/calendar">Terminarz</a>
                 </li>
               <li class="dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</a>
@@ -66,6 +68,13 @@
                   </form>
                 </div>
               </li>
+              @if (session()->get('subuser_id')!=null)
+                <li class="nav-item">
+                  <a href="/dashboard" class="btn btn-outline-dark">Wybrany podopieczny {{session()->get('subuser_fullname')}}</a>
+
+                </li>
+
+              @endif
             @endguest
 
           </ul>

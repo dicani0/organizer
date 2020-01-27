@@ -43,7 +43,7 @@ class SpecializationsController extends Controller
         $specialization = new Specialization();
         $specialization->name = $request->input('name');
         $specialization->save();
-        return redirect('/dashboard')->with('success', 'Specjalizacja dodana');
+        return redirect('doctors');
     }
 
     /**

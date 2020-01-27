@@ -180,8 +180,12 @@ a:hover {
   text-decoration: underline;
 }
 
+a .fc-content {
+  color: white !important;
+}
+
 a:not([href]):not([tabindex]) {
-  color: inherit;
+  color: white;
   text-decoration: none;
 }
 
@@ -193,6 +197,18 @@ a:not([href]):not([tabindex]):focus {
 
 a:not([href]):not([tabindex]):focus {
   outline: 0;
+}
+
+.center-card-image {
+  width: 100%;
+  text-align: center;
+}
+
+.center-card-image > img {
+  object-fit: contain;
+  margin: 0 auto;
+  max-height: 250px;
+  width: auto;
 }
 
 pre,
@@ -11099,4 +11115,3 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-

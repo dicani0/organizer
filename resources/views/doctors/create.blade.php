@@ -14,6 +14,7 @@
                 {{Form::bsTextArea('about', '', ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
                 <div>
                   {{Form::select('specialization', $specializations, null, ['placeholder' => 'Wybierz specjalizację', 'class' => 'form-control'])}}
+                  <a href="/specializations/create" class="btn btn-info form-control">Dodaj specjalizację</a>
                 </div>
                 <br>
                 {{Form::submit('Dodaj')}}

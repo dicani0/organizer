@@ -100,7 +100,33 @@ class DoctorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(
+            $request,
+            [
+            'name'=>'required',
+            'surname'=>'required',
+            'address'=>'required',
+            'specialization'=>'required',
+            'phone'=>'required'
+            ],
+            [
+            'name.required' => 'Polę imię jest wymagane',
+            'surname.required' => 'Polę nazwisko jest wymagane',
+            'address.required' => 'Polę adres jest wymagane',
+            'specialization.required' => 'Wybranie specjalizacji jest wymagane',
+            'phone.required' => 'Polę numer telefonu jest wymagane'
+            ]
+        );
+        $doctor = Doctor::find($id);
+        $doctor->name = $request->input('name');
+        $doctor->surname = $request->input('surname');
+        $doctor->address = $request->input('address');
+        $doctor->phone = $request->input('phone');
+        $doctor->website = $request->input('website');
+        $doctor->about = $request->input('about');
+        $doctor->spec_id = $request->input('specialization');
+        $doctor->save();
+        return redirect('/doctors');
     }
 
     /**
@@ -111,6 +137,8 @@ class DoctorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $doctor = Doctor::find($id);
+        $doctor->delete();
+        return redirect('doctors');
     }
 }
