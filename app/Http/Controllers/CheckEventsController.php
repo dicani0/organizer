@@ -11,11 +11,8 @@ class CheckEventsController extends Controller
     /**
      * @param  \Illuminate\Http\Request  $request
      */
-    public function checkClosestEvent()
+    public function check()
     {
-
-        //$ids = $request->input('ids');
-        //$ids = $_COOKIE['dateid'];
         $events = Event::where('subuser_id', '=', session()->get('subuser_id'))->whereDate('start_date', '=', Carbon::now()->toDateString())->orderBy('start_date', 'asc')->get();
         if (count($events)!=0) {
             if (isset($_COOKIE['display'])) {
@@ -25,6 +22,8 @@ class CheckEventsController extends Controller
             } else {
                 return "Uwaga w terminarzu istnieją wpisy[". (count($events)) ."] z dzisiejszą datą!";
             }
+        } else {
+            return "";
         }
     }
 }

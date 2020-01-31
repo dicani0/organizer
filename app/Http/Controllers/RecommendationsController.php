@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Recommendation;
 
 class RecommendationsController extends Controller
 {
@@ -14,7 +15,8 @@ class RecommendationsController extends Controller
     public function index()
     {
         $recommendations = Recommendation::all();
-        return view('recommendations.index')->with('recommendations', $recommendations);
+        $subuser_id=session('subuser_id');
+        return view('recommendations.index', compact('recommendations', 'subuser_id'));
     }
 
     /**
@@ -37,20 +39,20 @@ class RecommendationsController extends Controller
     public function store(Request $request)
     {
         $this->validate(
-             $request,
-             [
+            $request,
+            [
            'name' => 'required',
            'doctor_id_from' => 'required',
            'doctor_id_to' => 'required',
            'photo' => 'required'
          ],
-             [
+            [
            'name.required' => 'Polę nazwa badania jest wymagane',
            'doctor_id_from.required' => 'Wybranie doktora wystawiającego skierowanie jest wymagane',
            'doctor_id_to.required' => 'Wybranie doktora, do którego jest się skierowanym jest wymagane',
            'photo.required' => 'Dodanie skanu jest wymagane'
          ]
-         );
+        );
         $filenameWithExt = $request->file('photo')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         $extension = $request->file('photo')->getClientOriginalExtension();
@@ -106,18 +108,18 @@ class RecommendationsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(
-             $request,
-             [
+            $request,
+            [
              'name' => 'required',
              'doctor_from' => 'required',
              'doctor_to' => 'required'
            ],
-             [
+            [
              'name.required' => 'Pole nazwa badania jest wymagane',
              'doctor_from' => 'Pole lekarz jest wymagane',
              'doctor_to' => 'Pole lekarz jest wymagane'
            ]
-         );
+        );
         $recommendation = Recommendation::find($id);
         $recommendation->name = $request->input('name');
         $recommendation->subuser_id = $request->input('subuser_id');

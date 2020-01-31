@@ -69,6 +69,7 @@
                 "Wybrano podopiecznego: "+ response +
               '</div>'
             );
+            setTimeout("location.href = '/dashboard'",2500);
           }
         })
       })

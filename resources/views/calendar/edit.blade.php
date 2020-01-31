@@ -28,13 +28,13 @@
                   <div class="col">
                     <div class="form-group">
                       <label for="">Wybierz datę początkową</label>
-                      <input type="datetime-local" class="form-control" value="{{$event->convertStartDate()}}" class="date" name="start_date" placeholder="Wybierz datę początkową"/>
+                      <input type="text" name="start_date" value="" placeholder="Podaj datę początkową" class="form-control datepicker">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                       <label for="">Wybierz datę końcową</label>
-                      <input type="datetime-local" class="form-control" value={{$event->convertEndDate()}} class="date" name="end_date" placeholder="Wybierz datę końcową" />
+                      <input type="text" name="end_date" placeholder="Podaj datę końcową" value="" class="form-control datepicker">
                     </div>
                   </div>
                 </div>

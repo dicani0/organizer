@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', 'DashboardController@index');
 
 Auth::routes();
 Route::resource('doctors', 'DoctorsController');
@@ -27,9 +25,11 @@ Route::resource('referals', 'ReferalsController');
 Route::resource('prescriptions', 'PrescriptionsController');
 Route::resource('recommendations', 'RecommendationsController');
 //calendar
-Route::resource('/calendar', 'EventsController');
-Route::get('/addeventurl', 'EventsController@display');
-Route::post('events', 'EventsController@addEvent')->name('events.add');
+Route::resource('/events', 'EventsController');
+//Route::get('/events/add', 'EventsController@create');
+//Route::post('events', 'EventsController@addEvent')->name('events.add');
+Route::get('/events/display', 'EventsController@display');
+Route::get('/checkevents', 'CheckEventsController@check');
 
 
 Route::get('subuser/{id}', 'SubusersController@storeToSession')->name('subuser.storeToSession');

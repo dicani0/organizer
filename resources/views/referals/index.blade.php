@@ -6,50 +6,61 @@
   $colcount=count($referals);
   $i=0;
   ?>
+
   <h3>Skierowania <a class="btn btn-primary float-right" href="/referals/create">Dodaj skierowanie</a></h3>
   <hr class="hr-primary">
+  <div class="col">
+    <input type="text" id="myFilter" class="form-control" onkeyup="filterResults()" placeholder="Szukaj...">
+  </div>
+
+  <div class="d-flex p-2 bd-highlight" id="collection" style="flex-wrap: wrap; align-items: stretch;">
     @foreach ($referals as $referal)
-      @if ($i % 4 == 0)
-        <div class="row mb-3">
-      @endif
-      <div class="col-3">
-      <div class="card mb-3 tmp-card" style="">
-        <img class="card-img-top" height="250" width="250" src="storage/referals/1/{{$referal->photo}}" alt="{{$referal->name}}">
-      <div class="card-body">
-      <h5 class="card-title">{{$referal->name}}</h5>
-      <hr>
-      <h6 class="card-subtitle mb-2 text-muted"></h6>
-      <p class="card-text">
-        {{$referal->description}}
-        <hr>
-          <br>
-          <a href="/referals/{{$referal->id}}/" class="btn btn-success btn-lg" style="display: block;">Szczegóły</a>
+      <div class="card col-3">
+        <img class="card-img-top" height="250" width="250" src="/storage/referals/{{$subuser_id}}/{{$referal->photo}}" alt="{{$referal->name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{$referal->name}}</h5>
           <hr>
-          <a href="/referals/{{$referal->id}}/edit" class="float-left btn btn-primary">Edytuj</a>
-          {!!Form::open(['action' => ['ReferalsController@destroy', $referal->id], 'method' => 'POST', 'class' => 'btn btn-danger btn-sm float-right', 'onsubmit' => 'return confirm("Na pewno?")'])!!}
-          {{Form::hidden('_method', 'DELETE')}}
-          {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm'])}}
-          {!!Form::close()!!}
+          <p class="card-text">
+            Skierowanie zostało wystawione przez:  <br> <b>{{$referal->doctorfrom->FullName}}</b>
+            <br>
+            do <br>
+            <b>{{$referal->doctorto->FullName}}</b><br>
+            <br>
+            <b>Data badania</b>: <br> {{$referal->date}}
+            <br>
 
-
-      </p>
-      <div class="text-right tmp-btn">
+            <hr>
+            <br>
+            <a href="/referals/{{$referal->id}}/" class="btn btn-success btn-lg" style="display: block;">Szczegóły</a>
+            <hr>
+            <a href="/referals/{{$referal->id}}/edit" class="float-left btn btn-primary">Edytuj</a>
+            {!!Form::open(['action' => ['ExaminationsController@destroy', $referal->id], 'method' => 'POST', 'class' => 'btn btn-danger btn-sm float-right', 'onsubmit' => 'return confirm("Na pewno?")'])!!}
+            {{Form::hidden('_method', 'DELETE')}}
+            {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm'])}}
+            {!!Form::close()!!}
+          </p>
+        </div>
       </div>
-      </div>
-      </div>
-      </div>
-      @if ($i % 4 == 3)
-      </div>
-      @endif
-      <?php
-      $i++;
-      ?>
     @endforeach
-    @if (($i - 1) % 4 !=0)
-    </div>
-    @endif
 @else
   <p>Brak wyników</p>
-  <a href="/referals/create" class="btn btn-primary">Dodaj skierowanie</a>
 @endif
+<script>
+function filterResults() {
+    var input, filter, cards, cardContainer, h5, title, description, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("collection");
+    cards = cardContainer.getElementsByClassName("card");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-body h5.card-title");
+        description = cards[i].querySelector(".card-body p.card-text")
+        if (title.innerText.toUpperCase().indexOf(filter) > -1 || description.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+</script>
 @endsection

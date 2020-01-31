@@ -14,6 +14,10 @@ class Doctor extends Model
     {
         return $this->hasMany('App\Examination');
     }
+    public function recommendations()
+    {
+        return $this->hasMany('App\Recommendation');
+    }
     public function referals()
     {
         return $this->hasMany('App\Referal');

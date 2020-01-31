@@ -11,6 +11,9 @@
                     {{Form::label('doctor', 'Lekarz')}}
                     {{Form::select('doctor_id', $doctors, null, ['label' => 'Lekarz', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
                   </div>
+                  {{Form::label('date', 'Data')}}
+                  <input type="text" name="date" value="" class="form-control" id="datepicker">
+                  <br>
                   {{Form::bsTextArea('description', '', ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
                   {{Form::file('photo')}}
                   {{Form::submit('Wyślij',['class' => 'btn btn-primary'])}}
@@ -19,4 +22,16 @@
               </div>
             </div>
   </div>
+  <script type="text/javascript">
+  $(function () {
+    $('#datepicker').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm',
+      stepping: 10,
+      defaultDate: true,
+      icons: {
+        time:'far fa-clock'
+      }
+    });
+  });
+  </script>
 @endsection

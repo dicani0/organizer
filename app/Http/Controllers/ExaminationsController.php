@@ -40,7 +40,6 @@ class ExaminationsController extends Controller
           'examination.required' => 'Pole nazwa badania jest wymagane'
         ]
         );
-
         $filenameWithExt = $request->file('photo')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         $extension = $request->file('photo')->getClientOriginalExtension();
@@ -52,6 +51,7 @@ class ExaminationsController extends Controller
         $examination->doctor_id = $request->input('doctor_id');
         $examination->subuser_id = $request->session()->get('subuser_id');
         $examination->description = $request->input('description');
+        $examination->date = $request->input('date');
         $examination->photo=$filenameToStore;
         $examination->save();
         return redirect('/dashboard')->with('success', 'Wynik badań dodany');
@@ -82,6 +82,7 @@ class ExaminationsController extends Controller
         $examination->subuser_id = $request->input('subuser_id');
         $examination->doctor_id = $request->input('doctor');
         $examination->description = $request->input('description');
+        $examination->date = $request->input('date');
         if ($request->file('photo')!=null) {
             $filenameWithExt = $request->file('photo')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

@@ -47,7 +47,7 @@ class EventsController extends Controller
     }
     public function create()
     {
-        //
+        return view('calendar.create');
     }
 
     /**
@@ -58,7 +58,6 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //dump($request->input);
         $this->validate($request, [
           'title' => 'required',
           'color' => 'required',
@@ -72,7 +71,7 @@ class EventsController extends Controller
         $event->color = $request->input('color');
         $event->start_date = $request->input('start_date');
         $event->end_date = $request->input('end_date');
-
+        $event->description = $request->input('description');
         $event->save();
 
         return redirect('events')->with('success', 'Wydarzenie dodane');

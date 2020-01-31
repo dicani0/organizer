@@ -11,6 +11,10 @@
                   {{Form::label('doctor', 'Lekarz')}}
                   {{Form::select('doctor', $doctors, $examination->doctor_id , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
                 </div>
+                <br>
+                {{Form::label('date', 'Data')}}
+                <input type="text" name="date" class="form-control" autocomplete="off" id="datepicker">
+                <br>
                 {{Form::bsTextArea('description', $examination->description, ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
                 <br>
                 <div class="card">
@@ -33,4 +37,20 @@
           </div>
       </div>
   </div>
+  <script type="text/javascript">
+  $(function () {
+    $('#datepicker').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm',
+      useCurrent: false,
+      defaultDate: false,
+      stepping: 10,
+      showClose: true,
+      //date: "2000-10-10 10:10:00",
+      date: "{{$examination->date}}",
+      icons: {
+        time:'far fa-clock'
+      }
+    });
+  });
+  </script>
 @endsection
