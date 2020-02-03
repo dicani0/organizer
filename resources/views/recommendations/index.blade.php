@@ -23,11 +23,7 @@
           <p class="card-text">
             <b>Lekarz: </b> <br> {{$recommendation->doctor->FullName}}
             <br>
-            <b>Data badania</b>: <br> {{$recommendation->date}}
-            <br>
-
             <hr>
-            <br>
             <a href="/recommendations/{{$recommendation->id}}/" class="btn btn-success btn-lg" style="display: block;">Szczegóły</a>
             <hr>
             <a href="/recommendations/{{$recommendation->id}}/edit" class="float-left btn btn-primary">Edytuj</a>

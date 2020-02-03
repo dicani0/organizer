@@ -25,7 +25,7 @@
                           <th>Adres</th>
                           <th>Numer telefonu</th>
                           <th>Dodatkowe informacje</th>
-                          <th></th>
+                          <th class="">Wybierz/edytuj/usuń</th>
                         </tr>
                         @foreach ($subusers as $subuser)
                           <tr>
@@ -39,11 +39,11 @@
 
 
                             <a data-id='{{$subuser->id}}' class='btn btn-primary btn-sm float-right chooseSubuser' href="#"><i class="fas fa-user-check"></i></a>
-                            <a class='btn btn-warning btn-sm float-right' href="/subusers/{{$subuser->id}}/edit">Edytuj</a>
+                            <a class='btn btn-warning btn-sm float-right' href="/subusers/{{$subuser->id}}/edit"><i class="fas fa-users-cog"></i></a>
 
                               {!!Form::open(['action' => ['SubusersController@destroy', $subuser->id], 'method' => 'POST', 'class' => 'float-left', 'onsubmit' => 'return confirm("Na pewno?")'])!!}
                               {{Form::hidden('_method', 'DELETE')}}
-                              {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm'])}}
+                              {{Form::button('<i class="fas fa-user-times"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'])}}
                               {!!Form::close()!!}
                               </div>
                             </td>

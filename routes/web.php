@@ -19,16 +19,13 @@ Route::resource('subusers', 'SubusersController');
 Route::get('/dashboard', 'DashboardController@index');
 Route::resource('specializations', 'SpecializationsController');
 Route::resource('examinations', 'ExaminationsController');
-Route::resource('tasks', 'TasksController');
 Route::get('events', 'EventsController@index');
 Route::resource('referals', 'ReferalsController');
 Route::resource('prescriptions', 'PrescriptionsController');
 Route::resource('recommendations', 'RecommendationsController');
 //calendar
+Route::get('/events/list', 'EventsController@display');
 Route::resource('/events', 'EventsController');
-//Route::get('/events/add', 'EventsController@create');
-//Route::post('events', 'EventsController@addEvent')->name('events.add');
-Route::get('/events/display', 'EventsController@display');
 Route::get('/checkevents', 'CheckEventsController@check');
 
 

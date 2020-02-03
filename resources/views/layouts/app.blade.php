@@ -113,6 +113,7 @@
       <script type="text/javascript">
         $(document).ready()
         {
+          console.log(document.cookie);
           $.ajax(
             {
               method: 'GET',
@@ -122,12 +123,25 @@
                 if(response != "")
                 {
                 $('#alert-box').html(
-                  '<div style="line-height: 34px;" class="alert alert-warning" role="alert">'+ response + '<a class="text-center btn btn-primary float-right" href="/events">Terminarz</a>' + '</div>');
+                  '<div style="line-height: 34px;" class="alert alert-warning" role="alert">'+ response + '<a class="text-center btn btn-primary float-right confirmEvent" href="/events">Terminarz</a>' + '</div>');
                 }
               }
             }
           )
         }
+
+        $(document).on('click', '.confirmEvent' , function(e){
+          var now = new Date();
+          var expire = new Date();
+          var expires = "expires="+expire.toString();
+          expire.setFullYear(now.getFullYear());
+          expire.setMonth(now.getMonth());
+          expire.setDate(now.getDate()+1);
+          expire.setHours(0);
+          expire.setMinutes(0);
+          expire.setSeconds(0);
+          document.cookie = "display=yes; "+expires;
+        })
       </script>
 <!--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>

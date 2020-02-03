@@ -1,9 +1,13 @@
 @extends('layouts.app')
 @section('content')
-       <div class="jumbotron">
+
          <div class="row">
-           <a href="/events/create" class="btn btn-success">Dodaj wydarzenie</a>
-           <a href="/events/list" class="btn btn-success">Lista wydarzeń</a>
+           <div class="col-10">
+             <a href="/events/create" class="btn btn-success">Dodaj wydarzenie</a>
+             <a href="/events/list" class="btn btn-primary">Lista wydarzeń</a>
+           </div>
+
+           <input type="checkbox" style="height: 20px;" class="float-right" name="showAll" value="showAll">Pokaż dla wszystkich<br>
            {{-- <a href="/deleteeventurl" class="btn btn-danger">Usuń wydarzenie</a> --}}
          </div>
          <div class="row">
@@ -16,7 +20,7 @@
              </div>
            </div>
          </div>
-       </div>
+
              <div class="card-body">
                <script type="text/javascript">
                  $('#calendar').fullCalendar({!! $calendar->getOptionsJson() !!});

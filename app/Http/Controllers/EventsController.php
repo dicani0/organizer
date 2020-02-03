@@ -16,6 +16,28 @@ class EventsController extends Controller
     public function index()
     {
         CheckSubuserController::check();
+        $events = Event::where('subuser_id', '=', session()->get('subuser_id'))->get();
+        $event =[];
+
+        foreach ($events as $row) {
+            //$enddate = $row->end_date."24:00:00";
+            $event[] = \Calendar::event(
+                $row->title,
+                false,
+                new \DateTime($row->start_date),
+                new \DateTime($row->end_date),
+                $row->id,
+                [
+            'color' => $row->color,
+          ]
+            );
+        }
+        $calendar = \Calendar::addEvents($event);
+        return view('calendar.events', compact('events', 'calendar'));
+    }
+    public function indexForAll()
+    {
+        CheckSubuserController::check();
         $events = Event::all();
         $event =[];
 
@@ -43,7 +65,8 @@ class EventsController extends Controller
      */
     public function display()
     {
-        return view('calendar.addevent');
+        $events = Event::where('subuser_id', '=', session()->get('subuser_id'))->get();
+        return view('calendar.list', compact('events'));
     }
     public function create()
     {

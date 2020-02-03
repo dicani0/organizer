@@ -16,7 +16,7 @@
   <div class="d-flex p-2 bd-highlight" id="collection" style="flex-wrap: wrap; align-items: stretch;">
     @foreach ($examinations as $examination)
       <div class="card col-3">
-        <img class="card-img-top" height="250" width="250" src="/storage/examinations/{{$subuser_id}}/{{$examination->photo}}" alt="{{$examination->name}}">
+        {{-- <img class="card-img-top" height="250" width="250" src="/storage/examinations/{{$subuser_id}}/{{$examination->photo}}" alt="{{$examination->name}}"></img> --}}
         <div class="card-body">
           <h5 class="card-title">{{$examination->name}}</h5>
           <hr>
@@ -25,9 +25,14 @@
             <br>
             <b>Data badania</b>: <br> {{$examination->date}}
             <br>
+            <?php
+              $ext = explode(".", $examination->photo);
+              $ext = end($ext);
+             ?>
+            <b>Format załącznika</b>: {{$ext}}
+            <br>
 
             <hr>
-            <br>
             <a href="/examinations/{{$examination->id}}/" class="btn btn-success btn-lg" style="display: block;">Szczegóły</a>
             <hr>
             <a href="/examinations/{{$examination->id}}/edit" class="float-left btn btn-primary">Edytuj</a>

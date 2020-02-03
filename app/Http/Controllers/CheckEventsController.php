@@ -15,11 +15,10 @@ class CheckEventsController extends Controller
     {
         $events = Event::where('subuser_id', '=', session()->get('subuser_id'))->whereDate('start_date', '=', Carbon::now()->toDateString())->orderBy('start_date', 'asc')->get();
         if (count($events)!=0) {
-            if (isset($_COOKIE['display'])) {
-                if ($_COOKIE['display']=='yes') {
-                    return "Uwaga w terminarzu istnieją wpisy[". (count($events)) ."] z dzisiejszą datą!";
-                }
-            } else {
+            if (!isset($_COOKIE['display'])) {
+                return "Uwaga w terminarzu istnieją wpisy[". (count($events)) ."] z dzisiejszą datą!";
+            }
+            if ($_COOKIE['display']=='no') {
                 return "Uwaga w terminarzu istnieją wpisy[". (count($events)) ."] z dzisiejszą datą!";
             }
         } else {
