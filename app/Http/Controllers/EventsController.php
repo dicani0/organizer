@@ -55,7 +55,7 @@ class EventsController extends Controller
             );
         }
         $calendar = \Calendar::addEvents($event);
-        return view('calendar.events', compact('events', 'calendar'));
+        return view('calendar.allevents', compact('events', 'calendar'));
     }
 
     /**

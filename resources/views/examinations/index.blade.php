@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+<h3>Wyniki badań <a class="btn btn-primary float-right" href="/examinations/create">Dodaj wynik badań</a></h3>
+<hr class="hr-primary">
 @if (count($examinations) > 0)
 
   <?php
@@ -7,8 +9,8 @@
   $i=0;
   ?>
 
-  <h3>Wyniki badań <a class="btn btn-primary float-right" href="/examinations/create">Dodaj wynik badań</a></h3>
-  <hr class="hr-primary">
+
+
   <div class="col">
     <input type="text" id="myFilter" class="form-control" onkeyup="filterResults()" placeholder="Szukaj...">
   </div>
@@ -45,7 +47,7 @@
       </div>
     @endforeach
 @else
-  <p>Brak wyników</p>
+    <h6>Brak wyników</h6>
 @endif
 <script>
 function filterResults() {

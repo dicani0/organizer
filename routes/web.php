@@ -24,6 +24,7 @@ Route::resource('referals', 'ReferalsController');
 Route::resource('prescriptions', 'PrescriptionsController');
 Route::resource('recommendations', 'RecommendationsController');
 //calendar
+Route::get('/allevents', 'EventsController@indexForAll');
 Route::get('/events/list', 'EventsController@display');
 Route::resource('/events', 'EventsController');
 Route::get('/checkevents', 'CheckEventsController@check');

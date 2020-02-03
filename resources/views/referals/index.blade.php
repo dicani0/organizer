@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+<h3>Skierowania <a class="btn btn-primary float-right" href="/referals/create">Dodaj skierowanie</a></h3>
+<hr class="hr-primary">
 @if (count($referals) > 0)
 
   <?php
@@ -7,8 +9,8 @@
   $i=0;
   ?>
 
-  <h3>Skierowania <a class="btn btn-primary float-right" href="/referals/create">Dodaj skierowanie</a></h3>
-  <hr class="hr-primary">
+
+
   <div class="col">
     <input type="text" id="myFilter" class="form-control" onkeyup="filterResults()" placeholder="Szukaj...">
   </div>

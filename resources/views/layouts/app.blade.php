@@ -113,7 +113,6 @@
       <script type="text/javascript">
         $(document).ready()
         {
-          console.log(document.cookie);
           $.ajax(
             {
               method: 'GET',

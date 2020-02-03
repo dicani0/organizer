@@ -16,7 +16,7 @@ class ReferalsController extends Controller
     public function index()
     {
         $subuser_id=session('subuser_id');
-        $referals = Referal::all();
+        $referals = Referal::where('subuser_id', '=', session()->get('subuser_id'))->get();
         return view('referals.index', compact('subuser_id', 'referals'));
     }
 

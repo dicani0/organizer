@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+<h3>Recepty <a class="btn btn-primary float-right" href="/prescriptions/create">Dodaj receptę</a></h3>
+<hr class="hr-primary">
 @if (count($prescriptions) > 0)
 
   <?php
@@ -7,8 +9,7 @@
   $i=0;
   ?>
 
-  <h3>Recepty <a class="btn btn-primary float-right" href="/prescriptions/create">Dodaj receptę</a></h3>
-  <hr class="hr-primary">
+
   <div class="col">
     <input type="text" id="myFilter" class="form-control" onkeyup="filterResults()" placeholder="Szukaj...">
   </div>

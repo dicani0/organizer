@@ -14,7 +14,7 @@ class RecommendationsController extends Controller
      */
     public function index()
     {
-        $recommendations = Recommendation::all();
+        $recommendations = Recommendation::where('subuser_id', '=', session()->get('subuser_id'))->get();
         $subuser_id=session('subuser_id');
         return view('recommendations.index', compact('recommendations', 'subuser_id'));
     }

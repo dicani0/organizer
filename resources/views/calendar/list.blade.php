@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-  <div class="jumbotron">
     <table class="table table-striped table-bordered table-hover">
       <thead class="thead">
         <tr class="warning">
@@ -34,7 +33,6 @@
           </tr>
         @endforeach
       </tbody>
-
     </table>
-  </div>
+
 @endsection

@@ -7,7 +7,7 @@
              <a href="/events/list" class="btn btn-primary">Lista wydarzeń</a>
            </div>
 
-           <input type="checkbox" class="changeView" style="height: 20px;" class="float-right" name="showAll" value="showAll">Pokaż dla wszystkich<br>
+           <input type="checkbox" class="changeView" checked style="height: 20px;" class="float-right" name="showAll" value="showAll">Pokaż dla wszystkich<br>
            {{-- <a href="/deleteeventurl" class="btn btn-danger">Usuń wydarzenie</a> --}}
          </div>
          <div class="row">
@@ -26,7 +26,7 @@
                  $('#calendar').fullCalendar({!! $calendar->getOptionsJson() !!});
 
                  $('.changeView').on('change', function(e){
-                   window.location.href = "/allevents";
+                   window.location.href = "/events";
                  })
 
                </script>
