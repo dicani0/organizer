@@ -8,7 +8,7 @@
                 {!!Form::open(['action' => ['SpecializationsController@update', $specialization->id], 'method' => 'POST'])!!}
                 {{Form::bsText('name', $specialization->name, ['placeholder' => 'Podaj nazwę specjalizacji', 'label' => 'Specjalizacja'])}}
                 {{Form::hidden('_method', 'PUT')}}
-                {{Form::submit('Dodaj')}}
+                {{Form::submit('Zapisz', ['class' => 'btn btn-primary'])}}
                 {!!Form::close()!!}
               </div>
           </div>

@@ -19,7 +19,8 @@ class SpecializationsController extends Controller
     }
     public function index()
     {
-        //
+        $specializations = Specialization::all();
+        return view('specializations.index', compact('specializations'));
     }
 
     /**
@@ -87,7 +88,7 @@ class SpecializationsController extends Controller
         $this->validate(
             $request,
             [
-          'name' => 'required|unique:specializations:name'
+          'name' => 'required|unique:specializations,name'
         ],
             [
           'name.required' => 'Polę specjalizacja jest wymagane',
@@ -97,7 +98,7 @@ class SpecializationsController extends Controller
         $specialization = Specialization::find($id);
         $specialization->name=$request->input('name');
         $specialization->save();
-        return redirect('/dashboard')->with('success', 'Specjalizacja zaktualizowana');
+        return redirect('/doctors')->with('success', 'Specjalizacja zaktualizowana');
     }
 
     /**

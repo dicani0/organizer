@@ -25,18 +25,20 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
-          <ul class="navbar-nav">
-            @guest
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Logowanie') }}</a>
-              </li>
-              @if (Route::has('register'))
+
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 rounded mb-3">
+            <div class="collapse navbar-collapse row py-2 shadow-sm border border-top-0" id="navbarsExample10">
+              <ul class="navbar-nav col pl-2 justify-content-start">
+                @guest
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('Rejestracja') }}</a>
+                      <a class="nav-link" href="{{ route('login') }}">{{ __('Logowanie') }}</a>
                   </li>
-              @endif
+                  @if (Route::has('register'))
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('register') }}">{{ __('Rejestracja') }}</a>
+                      </li>
+                  @endif
               @else
                 <li class="nav-item">
                   <a class="nav-link
@@ -94,19 +96,19 @@
                   </form>
                 </div>
               </li>
-              @if (session()->get('subuser_id')!=null)
-                <li class="nav-item float-right">
-                  <a href="/dashboard" class="btn btn-outline-dark">Wybrany podopieczny {{session()->get('subuser_fullname')}}</a>
-
-                </li>
-
-              @endif
-            @endguest
-
-          </ul>
-        </div>
-      </nav>
-      <div class="container">
+              @endguest
+              </ul>
+              <ul class="navbar-nav col justify-content-end">
+                @if (session()->get('subuser_id')!=null)
+                  <li class="nav-item float-right">
+                    <a href="/dashboard" class="btn btn-outline-dark">
+                      Wybrany podopieczny {{session()->get('subuser_fullname')}}
+                    </a>
+                  </li>
+                @endif
+              </ul>
+            </div>
+          </nav>
         @include('inc.messages')
         @yield('content')
       </div>
