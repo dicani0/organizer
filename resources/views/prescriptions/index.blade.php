@@ -21,7 +21,7 @@
         <div class="card-body">
           <h5 class="card-title">{{$prescription->name}}</h5>
           <hr>
-          <p class="card-text">
+          <p class="card-text overflow-auto" style="height: 120px;">
             <b>Lekarz: </b> <br> {{$prescription->doctor->FullName}}
             <br>
             <b>Leki i ich dawkowanie</b>: <br> {{$prescription->medicine}}

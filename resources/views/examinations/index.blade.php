@@ -17,10 +17,10 @@
 
   <div class="d-flex p-2 bd-highlight" id="collection" style="flex-wrap: wrap; align-items: stretch;">
     @foreach ($examinations as $examination)
-      <div class="card col-3">
+      <div class="card col-3 mb-3">
         {{-- <img class="card-img-top" height="250" width="250" src="/storage/examinations/{{$subuser_id}}/{{$examination->photo}}" alt="{{$examination->name}}"></img> --}}
         <div class="card-body">
-          <h5 class="card-title">{{$examination->name}}</h5>
+          <h5 class="card-title overflow-auto" style="height: 50px;">{{$examination->name}}</h5>
           <hr>
           <p class="card-text">
             <b>Lekarz: </b> <br> {{$examination->doctor->FullName}}

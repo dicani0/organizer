@@ -13,6 +13,11 @@ class ReferalsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('selected');
+    }
     public function index()
     {
         $subuser_id=session('subuser_id');

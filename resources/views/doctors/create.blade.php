@@ -13,7 +13,7 @@
                 {{Form::bsText('website', '', ['placeholder' => 'Podaj adres strony internetowej lekarza lub kliniki', 'label' => 'Strona internetowa'])}}
                 {{Form::bsTextArea('about', '', ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
                 <div>
-                  {{Form::select('specialization', $specializations, null, ['placeholder' => 'Wybierz specjalizację', 'class' => 'form-control'])}}
+                  {{Form::select('specialization', $specializations, null, ['placeholder' => 'Wybierz specjalizację', 'class' => 'form-control js-select'])}}
                   <a href="/specializations/create" class="btn btn-info form-control">Dodaj specjalizację</a>
                 </div>
                 <br>
@@ -23,4 +23,10 @@
           </div>
       </div>
   </div>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.js-select').select2();
+  });
+  </script>
 @endsection

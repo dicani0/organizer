@@ -9,7 +9,7 @@
                 {{Form::bsText('name', $prescription->name, ['placeholder' => 'Podaj nazwę', 'label' => 'Nazwa'])}}
                 <div>
                   {{Form::label('doctor', 'Lekarz')}}
-                  {{Form::select('doctor', $doctors, $prescription->doctor_id , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
+                  {{Form::select('doctor', $doctors, $prescription->doctor_id , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control js-select'])}}
                 </div>
                 {{Form::bsTextArea('medicine', $prescription->medicine, ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
                 <br>
@@ -33,4 +33,9 @@
           </div>
       </div>
   </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.js-select').select2();
+    });
+  </script>
 @endsection

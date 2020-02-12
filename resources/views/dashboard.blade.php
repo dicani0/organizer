@@ -69,6 +69,7 @@
                 "Wybrano podopiecznego: "+ response +
               '</div>'
             );
+            $('.alert.alert-danger').remove();
             setTimeout("location.href = '/dashboard'",2500);
           }
         })

@@ -8,7 +8,7 @@
        <form class="" action="{{action('EventsController@store')}}" method="post">
          {{ csrf_field() }}
          <div class="row">
-           <div class="col-10">
+           <div class="col-9">
              <div class="form-group">
                <label for="">Nazwa wydarzenia</label>
                <input type="text" class="form-control" name="title" placeholder="Podaj nazwę wydarzenia"/>

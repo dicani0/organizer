@@ -28,7 +28,7 @@
             do <br>
             <b>{{$referal->doctorto->FullName}}</b><br>
             <br>
-            <b>Data badania</b>: <br> {{$referal->date}}
+            <b>Termin ważności skierowania: </b> <br> {{$referal->date}}
             <br>
 
             <hr>

@@ -9,9 +9,14 @@ use App\Http\Controllers\CheckSubuserController;
 
 class ExaminationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('selected');
+    }
     public function index()
     {
-        CheckSubuserController::check();
+        //CheckSubuserController::check();
         $subuser_id=session('subuser_id');
         $examinations = Examination::where('subuser_id', '=', session()->get('subuser_id'))->get();
         return view('examinations.index', compact('examinations', 'subuser_id'));

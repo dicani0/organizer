@@ -13,9 +13,13 @@ class PrescriptionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('selected');
+    }
     public function index()
     {
-        CheckSubuserController::check();
         $subuser_id=session('subuser_id');
         $prescriptions = Prescription::where('subuser_id', '=', session()->get('subuser_id'))->get();
         return view('prescriptions.index', compact('prescriptions', 'subuser_id'));

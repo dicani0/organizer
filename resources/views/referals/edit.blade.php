@@ -3,17 +3,17 @@
   <div class="row justify-content-center">
       <div class="col-md-8">
           <div class="card">
-              <div class="card-header"><h3 style="display:inline">Edytuj badanie</h3><a class='float-right btn btn-outline-info' href='/dashboard'>Powrót</a></div>
+              <div class="card-header"><h3 style="display:inline">Edytuj skierowanie</h3><a class='float-right btn btn-outline-info' href='/referals'>Powrót</a></div>
               <div class="card-body">
                 {!!Form::open(['action' => ['ReferalsController@update', $referal->id], 'method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
                 {{Form::bsText('name', $referal->name, ['placeholder' => 'Podaj nazwę', 'label' => 'Nazwa'])}}
                 <div>
                   {{Form::label('doctor_from', 'Lekarz wystawiający skierowanie')}}
-                  {{Form::select('doctor_from', $doctors, $referal->doctor_id_from , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
+                  {{Form::select('doctor_from', $doctors, $referal->doctor_id_from , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control js-select'])}}
                 </div>
                 <div>
                   {{Form::label('doctor_to', 'Lekarz, do którego zostało wystawione skierowanie')}}
-                  {{Form::select('doctor_to', $doctors, $referal->doctor_id_to , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
+                  {{Form::select('doctor_to', $doctors, $referal->doctor_id_to , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control js-select'])}}
                 </div>
                 {{Form::bsTextArea('description', $referal->description, ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
                 <br>
@@ -37,4 +37,9 @@
           </div>
       </div>
   </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.js-select').select2();
+    });
+  </script>
 @endsection

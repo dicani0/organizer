@@ -10,6 +10,10 @@ class Subuser extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->subname;

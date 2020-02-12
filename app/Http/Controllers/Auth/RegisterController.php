@@ -48,11 +48,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make(
+            $data,
+            [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ],
+            [
+        'email.unique' => 'Taki adres email jest już zajęty',
+        'password.required' => 'Pole hasło jest wymagane',
+        'password.min' => 'Hasło musi mieć minimum 8 znaków',
+        'password.confirmed' => 'Hasła muszą być takie same'
+      ]
+        );
     }
 
     /**

@@ -14,7 +14,9 @@
                 {{Form::bsTextArea('about', $doctor->about, ['placeholder' => 'Podaj dodatkowe informacje', 'label' => 'Dodatkowe informacje'])}}
 
                 <div>
-                  {{Form::select('specialization', $specializations, $doctor->spec_id , ['placeholder' => 'Wybierz specjalizację', 'class' => 'form-control'])}}
+                  {{Form::select('specialization', $specializations, $doctor->spec_id , ['placeholder' => 'Wybierz specjalizację', 'class' => 'form-control js-select'])}}
+                  <br>
+                  <a href="/specializations/create" class="btn btn-info form-control">Dodaj specjalizację</a>
                 </div>
                 <br>
                 {{Form::hidden('_method', 'PUT')}}
@@ -24,4 +26,24 @@
           </div>
       </div>
   </div>
+  <script type="text/javascript">
+  function formatState (state)
+  {
+    if(!state.id)
+    {
+      return state.text;
+    }
+    var $state = $(
+      '<span>'+state.text+'</span>'
+    );
+    return $state;
+  }
+  $(document).ready(function() {
+    $('.js-select').select2(
+      {
+        templateResult: formatState
+      }
+    );
+  });
+  </script>
 @endsection

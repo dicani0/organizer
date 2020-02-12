@@ -19,6 +19,8 @@
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js')}}"></script>
     <link href="{{ asset('css/popup.css') }}" rel="stylesheet">
     <script src="{{ asset('js/popup.js')}}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 
   </head>
@@ -82,7 +84,6 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown1">
                   <a class="dropdown-item" href="{{url('/dashboard')}}">Wybierz podopiecznego</a>
-                  <a class="dropdown-item" href="#">Edytuj dane podopiecznego</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">

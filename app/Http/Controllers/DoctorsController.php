@@ -13,7 +13,10 @@ class DoctorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $doctors = Doctor::all();
@@ -45,15 +48,18 @@ class DoctorsController extends Controller
                 'name'=>'required',
                 'surname'=>'required',
                 'address'=>'required',
-                'phone'=>'required',
-                'specialization'=>'required'
+                'phone'=>'required|digits:9',
+                'specialization'=>'required',
+                'website' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             ],
             [
               'name.required' => 'Pole imię jest wymagane',
               'surname.required' => 'Pole nazwisko jest wymagane',
               'address.required' => 'Pole adres jest wymagane',
               'phone.required' => 'Pole numer telefonu jest wymagane',
-              'specialization.required' => 'Wybranie specjalizacji jest wymagane'
+              'phone.digits' => 'Pole numer telefonu musi się składać z 9 cyfr',
+              'specialization.required' => 'Wybranie specjalizacji jest wymagane',
+              'website.regex' => 'Pole strona internetowa musi mieć poprawny format np. (www.google.com).'
               ]
         );
         $doctor = new Doctor();
@@ -65,6 +71,7 @@ class DoctorsController extends Controller
         $doctor->about=$request->input('about');
         $doctor->spec_id=$request->input('specialization');
         $doctor->save();
+        return redirect('/doctors')->with('success', 'Lekarz został dodany');
     }
 
     /**
@@ -103,18 +110,21 @@ class DoctorsController extends Controller
         $this->validate(
             $request,
             [
-            'name'=>'required',
-            'surname'=>'required',
-            'address'=>'required',
-            'specialization'=>'required',
-            'phone'=>'required'
-            ],
+              'name'=>'required',
+              'surname'=>'required',
+              'address'=>'required',
+              'phone'=>'required|digits:9',
+              'specialization'=>'required',
+              'website' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
+          ],
             [
-            'name.required' => 'Polę imię jest wymagane',
-            'surname.required' => 'Polę nazwisko jest wymagane',
-            'address.required' => 'Polę adres jest wymagane',
+            'name.required' => 'Pole imię jest wymagane',
+            'surname.required' => 'Pole nazwisko jest wymagane',
+            'address.required' => 'Pole adres jest wymagane',
+            'phone.required' => 'Pole numer telefonu jest wymagane',
+            'phone.digits' => 'Pole numer telefonu musi się składać z 9 cyfr',
             'specialization.required' => 'Wybranie specjalizacji jest wymagane',
-            'phone.required' => 'Polę numer telefonu jest wymagane'
+            'website.regex' => 'Pole strona internetowa musi mieć poprawny format np. (www.google.com).'
             ]
         );
         $doctor = Doctor::find($id);
@@ -126,7 +136,7 @@ class DoctorsController extends Controller
         $doctor->about = $request->input('about');
         $doctor->spec_id = $request->input('specialization');
         $doctor->save();
-        return redirect('/doctors');
+        return redirect('/doctors')->with('success', 'Lekarz został zaktualizowany');
     }
 
     /**
@@ -139,6 +149,6 @@ class DoctorsController extends Controller
     {
         $doctor = Doctor::find($id);
         $doctor->delete();
-        return redirect('doctors');
+        return redirect('doctors')->with('error', 'Lekarz został usunięty');
     }
 }

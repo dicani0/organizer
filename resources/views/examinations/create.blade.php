@@ -9,7 +9,7 @@
                   {{Form::bsText('name', '', ['placeholder' => 'Podaj nazwę badania', 'label' => 'Nazwa badania'])}}
                   <div class='form-group'>
                     {{Form::label('doctor', 'Lekarz')}}
-                    {{Form::select('doctor_id', $doctors, null, ['label' => 'Lekarz', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
+                    {{Form::select('doctor_id', $doctors, null, ['label' => 'Lekarz', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control js-select'])}}
                   </div>
                   {{Form::label('date', 'Data')}}
                   <input type="text" name="date" value="" class="form-control" id="datepicker">
@@ -32,6 +32,9 @@
         time:'far fa-clock'
       }
     });
+  });
+  $(document).ready(function() {
+    $('.js-select').select2();
   });
   </script>
 @endsection

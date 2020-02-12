@@ -5,6 +5,7 @@
       <div class="card-title">
         {{$examination->name}}
         <p class="float-right"><a class="btn btn-outline-primary" href="/examinations">Powrót</a></p>
+        <a href="/examinations/{{$examination->id}}/edit" class="float-right btn btn-outline-success">Edytuj</a>
         <hr>
       </div>
       <?php

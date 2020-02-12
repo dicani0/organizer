@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recommendation;
+use App\Doctor;
 
 class RecommendationsController extends Controller
 {
@@ -12,6 +13,11 @@ class RecommendationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('selected');
+    }
     public function index()
     {
         $recommendations = Recommendation::where('subuser_id', '=', session()->get('subuser_id'))->get();

@@ -12,6 +12,11 @@ class SpecializationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('selected');
+    }
     public function index()
     {
         //
@@ -36,9 +41,10 @@ class SpecializationsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-          'name'=>'required'
+          'name' => 'required|unique:specializations,name'
         ], [
-          'name.required'=>'Polę specjalizacja jest wymagane'
+          'name.required'=>'Polę specjalizacja jest wymagane',
+          'name.unique' => 'Taka specjalizacja już istnieje'
         ]);
         $specialization = new Specialization();
         $specialization->name = $request->input('name');
@@ -81,10 +87,11 @@ class SpecializationsController extends Controller
         $this->validate(
             $request,
             [
-          'name' => 'required'
+          'name' => 'required|unique:specializations:name'
         ],
             [
-          'name.required' => 'Polę specjalizacja jest wymagane'
+          'name.required' => 'Polę specjalizacja jest wymagane',
+          'name.unique' => 'Taka specjalizacja już istnieje'
         ]
         );
         $specialization = Specialization::find($id);

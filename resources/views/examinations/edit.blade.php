@@ -9,7 +9,7 @@
                 {{Form::bsText('name', $examination->name, ['placeholder' => 'Podaj nazwę', 'label' => 'Nazwa'])}}
                 <div>
                   {{Form::label('doctor', 'Lekarz')}}
-                  {{Form::select('doctor', $doctors, $examination->doctor_id , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control'])}}
+                  {{Form::select('doctor', $doctors, $examination->doctor_id , ['label' => 'Wybierz lekarza', 'placeholder' => 'Wybierz lekarza', 'class' => 'form-control js-select'])}}
                 </div>
                 <br>
                 {{Form::label('date', 'Data')}}
@@ -51,6 +51,9 @@
         time:'far fa-clock'
       }
     });
+  });
+  $(document).ready(function() {
+    $('.js-select').select2();
   });
   </script>
 @endsection

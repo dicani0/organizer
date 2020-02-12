@@ -13,9 +13,13 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('selected');
+    }
     public function index()
     {
-        CheckSubuserController::check();
         $events = Event::where('subuser_id', '=', session()->get('subuser_id'))->get();
         $event =[];
 
@@ -44,7 +48,7 @@ class EventsController extends Controller
         foreach ($events as $row) {
             //$enddate = $row->end_date."24:00:00";
             $event[] = \Calendar::event(
-                $row->title,
+                $row->subuser->FullName." ".$row->title,
                 false,
                 new \DateTime($row->start_date),
                 new \DateTime($row->end_date),
@@ -119,7 +123,8 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+        return view('calendar.edit', compact('event'));
     }
 
     /**
@@ -131,7 +136,22 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $this->validate($request, [
+        'title' => 'required',
+        'color' => 'required',
+        'start_date' => 'required',
+        'end_date' => 'required'
+      ]);
+        $event->title = $request->input('title');
+        $event->subuser_id = session('subuser_id');
+        $event->color = $request->input('color');
+        $event->start_date = $request->input('start_date');
+        $event->end_date = $request->input('end_date');
+        $event->description = $request->input('description');
+        $event->save();
+
+        return redirect('events/list')->with('success', 'Wydarzenie zaktualizowane');
     }
 
     /**
