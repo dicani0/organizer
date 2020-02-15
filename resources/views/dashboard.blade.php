@@ -64,7 +64,7 @@
           method: 'GET',
           url: '/subuser/'+$(this).data('id'),
           success: function(response){
-            $('#alert-box').html(
+            $('#alert1').html(
               '<div class="alert alert-success" role="alert">' +
                 "Wybrano podopiecznego: "+ response +
               '</div>'

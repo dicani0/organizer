@@ -18,7 +18,7 @@ class ExaminationsController extends Controller
     {
         //CheckSubuserController::check();
         $subuser_id=session('subuser_id');
-        $examinations = Examination::where('subuser_id', '=', session()->get('subuser_id'))->get();
+        $examinations = Examination::where('subuser_id', '=', session()->get('subuser_id'))->orderBy('date', 'desc')->get();
         return view('examinations.index', compact('examinations', 'subuser_id'));
     }
     public function show($id)

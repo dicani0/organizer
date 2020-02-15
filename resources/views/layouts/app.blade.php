@@ -27,8 +27,11 @@
   <body>
 
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 rounded mb-3">
-            <div class="collapse navbar-collapse row py-2 shadow-sm border border-top-0" id="navbarsExample10">
+        <nav style="position: sticky; top: 0px; z-index: 1000;" class="navbar navbar-expand-lg navbar-light bg-light pt-0 mb-3">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse row py-2 shadow-sm border border-top-0" id="navbar1">
               <ul class="navbar-nav col pl-2 justify-content-start">
                 @guest
                   <li class="nav-item">
@@ -110,6 +113,9 @@
             </div>
           </nav>
         @include('inc.messages')
+        <div id="alert1">
+
+        </div>
         @yield('content')
       </div>
       @yield('script')
